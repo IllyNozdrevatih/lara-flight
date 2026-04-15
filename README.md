@@ -1,3 +1,7 @@
+PHP 8.2.28 (cli) (built: Mar 11 2025 18:33:12) (NTS Visual C++ 2019 x86)
+Copyright (c) The PHP Group
+Zend Engine v4.2.28, Copyright (c) Zend Technologies
+
 # Laravel + Vue Starter Kit
 
 ## Introduction
