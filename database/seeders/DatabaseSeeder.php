@@ -27,7 +27,7 @@ class DatabaseSeeder extends Seeder
 //            'airline' => Str::random(10),
 //        ]);
 
+//        Airline::factory()->count(100)->create();
         Flight::factory()->count(100)->create();
-        Airline::factory()->count(100)->create();
     }
 }

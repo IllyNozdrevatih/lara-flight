@@ -16,7 +16,7 @@ return new class extends Migration
             $table->id();
             $table->string('from')->default('');
             $table->string('to')->default('');
-            $table->foreignIdFor(Airline::class);
+            $table->foreignIdFor(Airline::class)->constrained()->restrictOnDelete();
             $table->string('flight_number')->default('');
             $table->dateTime('departure_date')->nullable();
             $table->dateTime('arrival_date')->nullable();

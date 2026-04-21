@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('airlines', function (Blueprint $table) {
             $table->id();
             $table->string('name', length: 100)->comment('airline name');
-            $table->string('address', length: 100)->comment('address registration');
+            $table->string('address', length: 100)->comment('address registration')->default('');
             $table->string('country', length: 100);
-            $table->string('email', length: 100);
+            $table->string('email', length: 100)->default('');
             $table->string('phone', 20)->comment('phone number')->nullable();
             $table->timestamps();
         });
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('airline');
+        Schema::dropIfExists('airlines');
     }
 };
