@@ -38,7 +38,7 @@ function handleSelectFilterAirline(airline: I_Airline) {
             </thead>
             <tbody>
               <tr v-for="flightItem of flights.data" :key="`flight-list-item-${flightItem.id}`">
-                <td class="px-1">{{flightItem.id}}</td>
+                <td class="px-1">{{ flightItem.id }}</td>
                 <td class="px-1">{{ flightItem.from }}</td>
                 <td class="px-1">{{ flightItem.to }}</td>
                 <td class="px-1">{{ flightItem.airline.name }}</td>
@@ -49,11 +49,14 @@ function handleSelectFilterAirline(airline: I_Airline) {
               </tr>
             </tbody>
           </table>
-          <div class="mt-2">
+          <div class="mt-2" v-show="flights.total > 1">
             <Link
-              v-for="(link, linkIndex) of flights.links" :key="`link-${linkIndex}`" :href="link.url" v-html="link.label"
+              v-for="(link, linkIndex) of flights.links"
+              :key="`link-${linkIndex}`"
+              :href="link.url"
+              v-html="link.label"
               class="px-2"
-              :class="{'link-active': flights.current_page === link.page }"
+              :class="{ 'link-active': flights.current_page === link.page }"
             />
           </div>
         </div>
@@ -81,6 +84,5 @@ function handleSelectFilterAirline(airline: I_Airline) {
 <style lang="scss" scoped>
 .link-active {
   font-weight: 600;
-
 }
 </style>
