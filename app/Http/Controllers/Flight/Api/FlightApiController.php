@@ -29,8 +29,8 @@ class FlightApiController extends Controller
     }
 
     public function update(UpdateFlightRequest $request, int $id){
-        return [];
-//        return response()->json($flight, 200);
+        $flight = $this->flightService->update($request->validated(), $id);
+        return response()->json($flight, 200);
     }
 
     public function getOne($id){
