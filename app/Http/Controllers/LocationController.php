@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\EndpointHit;
 use App\Services\GeoDb\GeoDbService;
 use App\Services\AirportsApi\AirportsApiService;
 use Illuminate\Http\JsonResponse;
@@ -13,6 +14,9 @@ class LocationController extends Controller
 
     public function searchCities(Request $request): JsonResponse
     {
+//        event(new EndpointHit('search-cities'));
+//        $result = cache()->get('endpoint_count:search-cities', 0);
+
         $cities = $this->geoDb->searchCities(
             query: $request->string('q'),
             limit: 5,
