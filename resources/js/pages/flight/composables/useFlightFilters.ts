@@ -4,14 +4,13 @@ import { reactive, watch } from 'vue'
 export function useFlightFilters(initialFilters: Record<string, string>) {
   const filters = reactive({ ...initialFilters })
 
-  // Автоматически обновляет URL при изменении фильтров
   watch(filters, (values) => {
     router.get(route('flights.index'), values, {
-      preserveState: true,   // не сбрасывает скролл
+      preserveState: true,
       preserveScroll: true,
-      replace: true,         // не засоряет history
+      replace: true,
     })
-  }, { debounce: 300 })          // 👈 debounce чтобы не спамить запросы
+  }, { debounce: 300 })
 
   const reset = () => {
     Object.keys(filters).forEach(key => filters[key] = '')
