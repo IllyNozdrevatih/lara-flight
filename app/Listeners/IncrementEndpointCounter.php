@@ -12,7 +12,6 @@ class IncrementEndpointCounter
     {
         $key = "endpoint_count:{$event->endpoint}";
 
-        // простой вариант через cache
         cache()->increment($key, 1) ?: cache()->put($key, 1);
     }
 }
