@@ -6,6 +6,7 @@ use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Requests\User\StoreUserRequest;
 use App\Jobs\SendWelcomeEmail;
 use App\Models\User;
+use App\Notifications\UserLoggedIn;
 use Illuminate\Support\Facades\Auth;
 
 class UserService

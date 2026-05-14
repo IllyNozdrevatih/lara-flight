@@ -3,6 +3,8 @@
 namespace App\Http\Requests\Order;
 
 use App\Models\Order;
+use App\Models\User;
+use App\Notifications\NotifyUserSaveOrder;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
@@ -37,18 +39,7 @@ class StoreOrderRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'user_id' => 'required|integer|exists:users,id',
             'flight_id' => 'required|integer|exists:flights,id',
         ];
-    }
-
-    public function saveOrder( array  $data)
-    {
-
-        $payload = Arr::only($data,['flight_id','user_id']);
-
-        $order = Order::create($payload);
-
-        return $order;
     }
 }
