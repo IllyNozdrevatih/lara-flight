@@ -4,6 +4,7 @@ namespace App\Services\User;
 
 use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Requests\User\StoreUserRequest;
+use App\Jobs\SendWelcomeEmail;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
@@ -24,6 +25,7 @@ class UserService
             $expiresAt
         )->plainTextToken;
 
+
         return [
             'token' => $token,
             'expires_at' => $expiresAt->toIso8601String(),
@@ -32,9 +34,10 @@ class UserService
 
     public function store(StoreUserRequest $request)
     {
-
         $user = User::create($request->only('name', 'email', 'password'));
         $token = $user->createToken('api-token', ['*'], now()->addMinutes(60))->plainTextToken;
+
+        SendWelcomeEmail::dispatch($user);
 
         return ['token' => $token, 'user' => $user];
     }
@@ -47,7 +50,6 @@ class UserService
 
     public function cabinet()
     {
-
         $user = Auth::user();
         $user->load('orders')->load('orders.flight');
 
