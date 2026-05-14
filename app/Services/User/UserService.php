@@ -7,12 +7,30 @@ use App\Http\Requests\User\StoreUserRequest;
 use App\Jobs\SendWelcomeEmail;
 use App\Models\User;
 use App\Notifications\UserLoggedIn;
+use Illuminate\Http\Exceptions\ThrottleRequestsException;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\RateLimiter;
 
 class UserService
 {
+    private const MAX_ATTEMPTS = 3;
+    private const DECAY_SECONDS = 60;
     public function login(LoginRequest $request)
     {
+        $rateLimitKey = 'login:' . str($request->input('email'))->lower() . ':' . $request->ip();
+
+        if (RateLimiter::tooManyAttempts($rateLimitKey, self::MAX_ATTEMPTS)) {
+            $seconds = RateLimiter::availableIn($rateLimitKey);
+
+            throw new ThrottleRequestsException(
+                "Too many attempts. Try again in {$seconds} sek."
+            );
+        }
+
+        RateLimiter::hit($rateLimitKey, self::DECAY_SECONDS);
+
+        // RateLimiter::clear($rateLimitKey);
+
         $request->authenticate();
         $user = Auth::user();
 
