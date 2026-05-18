@@ -30,6 +30,18 @@ class  UserController extends Controller
         }
     }
 
+    public function refresh(){
+        try {
+           $data = $this->userService->refresh();
+
+           return response()->json($data);
+        } catch (\Throwable $e) {
+            Log::error($e);
+
+            return response()->json(['message' => $e->getMessage()], 500);
+        }
+    }
+
     public function cabinet()
     {
         $user = $this->userService->cabinet();
