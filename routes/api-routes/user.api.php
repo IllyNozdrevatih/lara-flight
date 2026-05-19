@@ -12,7 +12,9 @@ Route::prefix('user')->group(function () {
     });
 
     Route::middleware(['auth:sanctum','access.token'])->group(function () {
-        Route::get('/cabinet', [UserController::class,'cabinet'])->name('user.cabinet');
+        Route::middleware(['throttle:5,1'])->group(function () {
+            Route::get('/cabinet', [UserController::class,'cabinet'])->name('user.cabinet');
+        });
         Route::post('/logout', [UserController::class,'logout'])->name('user.logout');
     });
 });
