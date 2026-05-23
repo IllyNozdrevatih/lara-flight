@@ -30,7 +30,7 @@ class SendWelcomeEmail implements ShouldQueue
             ['user email'=> $this->user->email]
         );
 
-        Mail::to($this->user->email)->send(new WelcomeMail($this->user));
+//        Mail::to($this->user->email)->send(new WelcomeMail($this->user));
     }
 
     public function failed(\Throwable $exception): void
