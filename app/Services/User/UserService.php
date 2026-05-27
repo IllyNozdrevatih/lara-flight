@@ -40,6 +40,7 @@ class UserService
         $token = $this->generateToken($expiresAt);
         $refresh_token = $this->generateRefreshToken();
 
+        SendWelcomeEmail::dispatch($user);
 
         return [
             'token' => $token,

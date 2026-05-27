@@ -9,6 +9,7 @@ require __DIR__.'/api-routes/geodb.api.php';
 require __DIR__.'/api-routes/airportsapi.api.php';
 require __DIR__.'/api-routes/user.api.php';
 require __DIR__.'/api-routes/order.api.php';
+require __DIR__ . '/api-routes/sqlite.api.php';
 
 
 Route::get('/user', function (Request $request) {

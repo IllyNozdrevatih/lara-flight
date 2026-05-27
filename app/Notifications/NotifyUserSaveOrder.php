@@ -3,7 +3,6 @@
 namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
@@ -14,11 +13,10 @@ class NotifyUserSaveOrder extends Notification
     /**
      * Create a new notification instance.
      */
-    public function __construct($user_name, $order_id)
-    {
-        $this->user_name = $user_name;
-        $this->order_id = $order_id;
-    }
+    public function __construct(
+        public string $user_name,
+        public int $order_id,
+    ) {}
 
     /**
      * Get the notification's delivery channels.
