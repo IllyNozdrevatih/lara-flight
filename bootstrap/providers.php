@@ -6,4 +6,5 @@ return [
     App\Providers\EventServiceProvider::class,
     App\Providers\GeoDbServiceProvider::class,
     App\Providers\TelescopeServiceProvider::class,
+    App\Providers\AuthServiceProvider::class,
 ];

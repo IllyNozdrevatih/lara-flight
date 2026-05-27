@@ -7,4 +7,6 @@ Route::middleware('auth:sanctum')
     ->prefix('order')
     ->group(function () {
         Route::post('/store', [OrderController::class, 'store']);
+        Route::post('/update', [OrderController::class, 'update']);
+        Route::post('/delete', [OrderController::class, 'delete']);
     });
