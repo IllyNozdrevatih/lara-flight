@@ -1,10 +1,10 @@
 <?php
 
 return [
-    App\Providers\AirportsApiServiceProvider::class,
-    App\Providers\AppServiceProvider::class,
-    App\Providers\EventServiceProvider::class,
-    App\Providers\GeoDbServiceProvider::class,
-    App\Providers\TelescopeServiceProvider::class,
-    App\Providers\AuthServiceProvider::class,
+    \App\Infrastructure\Providers\AirportsApiServiceProvider::class,
+    \App\Infrastructure\Providers\AppServiceProvider::class,
+    \App\Infrastructure\Providers\EventServiceProvider::class,
+    \App\Infrastructure\Providers\GeoDbServiceProvider::class,
+    \Laravel\Telescope\TelescopeServiceProvider::class,
+    \App\Infrastructure\Providers\AuthServiceProvider::class,
 ];
